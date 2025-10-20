@@ -1,5 +1,3 @@
-# Усложненный make-file.  Введены переменные для параметров компиляции и исполняемых файлов
-
 .PHONY: all debug release clean
 
 RELEASE_FLAGS = -O2 -Wall -DNDEBUG
@@ -12,14 +10,13 @@ all: debug release
 
 debug: $(DEBUG_EXEC)
 
-$(DEBUG_EXEC): hello.cpp
-	g++ $(DEBUG_FLAGS) hello.cpp -o $(DEBUG_EXEC) 
+$(DEBUG_EXEC): $(SOURCE)
+	g++ $(DEBUG_FLAGS) $(SOURCE) -o $(DEBUG_EXEC)
 
 release: $(RELEASE_EXEC)
 
-$(RELEASE_EXEC): hello.cpp
-	g++ $(RELEASE_FLAGS) hello.cpp -o $(RELEASE_EXEC)
+$(RELEASE_EXEC): $(SOURCE)
+	g++ $(RELEASE_FLAGS) $(SOURCE) -o $(RELEASE_EXEC)
 
 clean:
 	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
-
